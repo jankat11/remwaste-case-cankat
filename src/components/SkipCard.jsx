@@ -10,57 +10,56 @@ const SkipCard = ({
     <div
       onClick={() => onSelect(id)}
       className={`
-        flex flex-col justify-between
-        bg-white dark:bg-gray-800 
-        border 
-        rounded-lg 
-        shadow-md 
+        card 
+        bg-base-100 
+        shadow-sm 
+        cursor-pointer 
+        transition 
         hover:shadow-lg 
-        transition-shadow
-        cursor-pointer
-        p-4
+        rounded-lg 
+        overflow-hidden
         ${
           isSelected
-            ? "border-blue-500 ring ring-blue-200"
-            : "border-gray-200 dark:border-gray-700"
+            ? "border-2 border-blue-500"
+            : "border border-gray-200 dark:border-gray-700"
         }
       `}
     >
-      <div className="w-full h-32 bg-gray-100 dark:bg-gray-700 rounded-md mb-4 flex items-center justify-center">
+      <figure className="bg-gray-100 dark:bg-gray-700 h-40 flex items-center justify-center overflow-hidden">
         <img
           src={`5skip.jpg`}
           alt={`${size} Yard Skip`}
-          className="object-contain h-full"
+          className="object-cover"
         />
+      </figure>
+      <div className="card-body p-4">
+        <h2 className="card-title text-gray-800 dark:text-gray-100">
+          {size} Yard Skip
+        </h2>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          {hirePeriod} day hire
+        </p>
+        <p className="mt-2 text-xl font-bold text-gray-900 dark:text-gray-100">
+          £{priceBeforeVat}
+        </p>
+        <div className="card-actions justify-end mt-4">
+          {isSelected ? (
+            <button className="btn btn-primary btn-disabled w-full">
+              Selected
+            </button>
+          ) : (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onSelect(id);
+              }}
+              className="btn btn-primary w-full hover:btn-primary-focus transition"
+            >
+              Select
+            </button>
+          )}
+        </div>
       </div>
-
-      <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
-        {size} Yard Skip
-      </h3>
-
-      <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-        {hirePeriod} day hire
-      </p>
-
-      <p className="mt-2 text-xl font-bold text-gray-900 dark:text-gray-100">
-        £{priceBeforeVat}
-      </p>
-
-      {isSelected ? (
-        <button
-          disabled
-          className="mt-4 w-full px-4 py-2 bg-blue-500 text-white font-medium rounded-lg"
-        >
-          Selected
-        </button>
-      ) : (
-        <button
-          onClick={() => onSelect(id)}
-          className="mt-4 w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition"
-        >
-          Select
-        </button>
-      )}
     </div>
   );
 };
