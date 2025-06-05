@@ -1,7 +1,8 @@
+
 import { useEffect, useState } from "react";
 import SkipCard from "./SkipCard";
 
-const SkipSelector = () =>  {
+const SkipSelector = () => {
   const [skips, setSkips] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -29,7 +30,9 @@ const SkipSelector = () =>  {
   if (loading) {
     return (
       <div className="flex justify-center items-center py-10">
-        <span className="text-gray-500">Loading...</span>
+        <span className="text-text-secondary dark:text-text-secondaryDark">
+          Loading...
+        </span>
       </div>
     );
   }
@@ -44,10 +47,10 @@ const SkipSelector = () =>  {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+        <h1 className="text-3xl font-bold text-text-base dark:text-text-dark">
           Choose Your Skip Size
         </h1>
-        <p className="mt-2 text-gray-600 dark:text-gray-300">
+        <p className="mt-2 text-text-secondary dark:text-text-secondaryDark">
           Select the skip size that best suits your needs
         </p>
       </div>
@@ -67,29 +70,37 @@ const SkipSelector = () =>  {
       </div>
 
       {selectedId && (
-        <div className="mt-10 p-4 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg">
+        <div
+          className="
+            mt-10 p-4 
+            bg-background 
+            dark:bg-background-dark 
+            border border-secondary-DEFAULT dark:border-secondary-darker 
+            rounded-lg
+          "
+        >
           {(() => {
             const sel = skips.find((s) => s.id === selectedId);
             return (
               <>
-                <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+                <h2 className="text-xl font-semibold text-text-base dark:text-text-dark">
                   Selected: {sel.size} Yard Skip
                 </h2>
-                <p className="mt-1 text-gray-600 dark:text-gray-300">
+                <p className="mt-1 text-text-secondary dark:text-text-secondaryDark">
                   {sel.hire_period_days} days hire period • £
                   {sel.price_before_vat}
                 </p>
 
-                <div className="mt-3">
+                <div className="mt-3 flex space-x-3">
                   <button
                     onClick={() => alert("Continue clicked!")}
-                    className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg"
+                    className="px-6 py-2 bg-primary hover:bg-primary-focus text-white font-medium rounded-lg transition"
                   >
                     Continue →
                   </button>
                   <button
                     onClick={() => setSelectedId(null)}
-                    className="ml-4 px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-lg"
+                    className="px-4 py-2 bg-secondary-lighter hover:bg-secondary DEFAULT text-text-base dark:text-text-dark rounded-lg transition"
                   >
                     Back
                   </button>
@@ -101,6 +112,6 @@ const SkipSelector = () =>  {
       )}
     </div>
   );
-}
+};
 
-export default SkipSelector
+export default SkipSelector;
