@@ -1,3 +1,5 @@
+import { RiArrowRightSLine } from "react-icons/ri";
+import { BsCheck } from "react-icons/bs";
 const SkipCard = ({
   id,
   size,
@@ -16,12 +18,12 @@ const SkipCard = ({
         cursor-pointer 
         transition 
         hover:shadow-lg 
-        rounded-lg 
+        rounded-xl 
         overflow-hidden
         ${isSelected ? "" : "     "}
       `}
     >
-      <figure className=" h-40 flex items-center justify-center overflow-hidden">
+      <figure className=" aspect-w-16 aspect-h-9 flex items-center justify-center overflow-hidden">
         <img
           src={`5skip.jpg`}
           alt={`${size} Yard Skip`}
@@ -31,7 +33,7 @@ const SkipCard = ({
       <div className="card-body p-4">
         <h2 className="card-title text-text-base ">{size} Yard Skip</h2>
 
-        <p className="text-sm ">{hirePeriod} day hire</p>
+        <p className="text-sm">{hirePeriod} day hire</p>
 
         <p className="mt-2 text-xl font-bold text-text-base ">
           £{priceBeforeVat}
@@ -39,8 +41,13 @@ const SkipCard = ({
 
         <div className="card-actions justify-end mt-4">
           {isSelected ? (
-            <button className="btn btn-warning shadow-none w-full">
-              Selected
+            <button className="btn btn-warning shadow-none w-full border-none rounded-xl">
+              <div className="flex items-center gap-1">
+                <p>Selected</p>
+                <div className="relative">
+                  <BsCheck size={20} />
+                </div>
+              </div>
             </button>
           ) : (
             <button
@@ -48,9 +55,14 @@ const SkipCard = ({
                 e.stopPropagation();
                 onSelect(id);
               }}
-              className="btn bg-base-100 w-full transition shadow-none border-none"
+              className="btn bg-base-100 w-full text-shadow-none transition shadow-none border-none rounded-xl"
             >
-              Select
+              <div className="flex justify-center items-center gap-1 ">
+                <p>Select This Skip</p>
+                <div className="relative">
+                  <RiArrowRightSLine size={20} />
+                </div>
+              </div>
             </button>
           )}
         </div>
