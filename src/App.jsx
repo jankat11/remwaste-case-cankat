@@ -1,17 +1,15 @@
-import SkipSelector from "./components/SkipSelector";
+import ProcessLayout from "./components/Layout/ProcessLayout";
+import StepContent from "./components/Layout/StepContent";
+import { useState } from "react";
+import { steps, CASE_STEP } from "./data/stepsData";
 
 function App() {
+  const [currentStep, setCurrentStep] = useState(CASE_STEP);
+
   return (
-    <div className="min-h-screen font-sans">
-      <header className="shadow">
-        <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl font-semibold">Business Skip Hire</h1>
-        </div>
-      </header>
-      <main className="py-8">
-        <SkipSelector />
-      </main>
-    </div>
+    <ProcessLayout steps={steps} currentStep={currentStep}>
+      <StepContent currentStep={currentStep} setCurrentStep={setCurrentStep} />
+    </ProcessLayout>
   );
 }
 

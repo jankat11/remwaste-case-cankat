@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import SkipCard from "./SkipCard";
-import SelectionFooter from "./SelectionFooter";
+import SkipFooterActions from "./SkipFooterActions";
 
 const SkipSelector = () => {
   const [skips, setSkips] = useState([]);
@@ -78,7 +78,9 @@ const SkipSelector = () => {
           ))}
         </div>
       </div>
-      {selectedId && <SelectionFooter skips={skips} selectedId={selectedId} />}
+      {selectedId && (
+        <SkipFooterActions skips={skips} selectedId={selectedId} />
+      )}
     </>
   );
 };
