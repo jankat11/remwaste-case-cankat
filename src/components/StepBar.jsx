@@ -19,10 +19,10 @@ const StepBar = ({ steps, currentStep }) => {
   ];
 
   return (
-    <div className="flex items-center justify-center mb-8 px-4 sm:px-0">
+    <div className="flex items-center justify-center mb-8 px-4 mx-auto max-w-7xl sm:px-4 lg:px-6  w-full">
       {steps.map((label, idx) => (
         <React.Fragment key={label}>
-          <div className="flex items-center">
+          <div key={label} className="flex items-center">
             <div
               className={`
                 w-8 h-8 rounded-full flex items-center justify-center
@@ -48,7 +48,7 @@ const StepBar = ({ steps, currentStep }) => {
               {label}
             </span>
           </div>
-          {idx < steps.length - 1 && <div className="flex-1 h-px mx-4  d" />}
+          {idx < steps.length - 1 && <div className="flex-1 h-px mx-4  bg-white" />}
         </React.Fragment>
       ))}
     </div>
