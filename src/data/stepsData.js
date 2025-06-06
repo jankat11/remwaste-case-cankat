@@ -1,4 +1,4 @@
-export const CASE_STEP = 2
+export const CASE_STEP = 2  
 
 export const steps = [
   "Postcode",

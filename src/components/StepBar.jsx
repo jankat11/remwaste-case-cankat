@@ -1,4 +1,4 @@
-import React from "react";
+import { useRef, useEffect } from "react";
 import {
   FaMapMarkerAlt,
   FaTrashAlt,
@@ -9,49 +9,46 @@ import {
 } from "react-icons/fa";
 
 const StepBar = ({ steps, currentStep }) => {
+  const itemRefs = useRef([]);
+  useEffect(() => {
+    const el = itemRefs.current[currentStep];
+    if (el) {
+      el.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+    }
+  }, [currentStep]);
+
   const icons = [
-    <FaMapMarkerAlt size={20} />, // Postcode
-    <FaTrashAlt size={20} />, // Waste Type
-    <FaBox size={20} />, // Select Skip
-    <FaCheckCircle size={20} />, // Permit Check
-    <FaCalendarAlt size={20} />, // Choose Date
-    <FaCreditCard size={20} />, // Payment
+    <FaMapMarkerAlt size={15} />,
+    <FaTrashAlt size={15} />,
+    <FaBox size={15} />,
+    <FaCheckCircle size={15} />,
+    <FaCalendarAlt size={15} />,
+    <FaCreditCard size={15} />,
   ];
 
   return (
-    <div className="flex items-center justify-center mb-8 px-4 mx-auto max-w-7xl sm:px-4 lg:px-6  w-full">
-      {steps.map((label, idx) => (
-        <React.Fragment key={label}>
-          <div key={label} className="flex items-center">
-            <div
-              className={`
-                w-8 h-8 rounded-full flex items-center justify-center
-                ${
-                  idx === currentStep
-                    ? "bg-primary text-white"
-                    : " text-text-secondary"
-                }
-              `}
-            >
-              {icons[idx]}
+    <ul className="steps scroll-container w-full max-w-7xl mx-auto min-w-2xl px-0 sm:px-4 lg:px-6 my-4">
+      {steps.map((label, index) => {
+        const statusClass = index <= currentStep ? "step step-success" : "step";
+
+        return (
+          <li
+            key={label}
+            ref={(el) => (itemRefs.current[index] = el)}
+            className={statusClass}
+          >
+            <span className="step-icon">{icons[index]}</span>
+            <div className="flex items-center mt-2">
+              <p className="text-sm font-medium">{label}</p>
             </div>
-            <span
-              className={`
-                mt-2 text-sm font-medium
-                ${
-                  idx === currentStep
-                    ? "text-text-base "
-                    : "text-text-secondary"
-                }
-              `}
-            >
-              {label}
-            </span>
-          </div>
-          {idx < steps.length - 1 && <div className="flex-1 h-px mx-4  bg-white" />}
-        </React.Fragment>
-      ))}
-    </div>
+          </li>
+        );
+      })}
+    </ul>
   );
 };
 
