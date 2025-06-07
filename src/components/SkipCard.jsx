@@ -10,10 +10,12 @@ const SkipCard = ({
   isSelected,
   imageSrc,
   onSelect,
+  isLoading,
 }) => {
   const skipCardRef = useRef();
 
   const handleClick = () => {
+    if (isLoading) return;       
     const el = skipCardRef.current;
     if (el && !isSelected) {
       onSelect(id);
@@ -24,6 +26,7 @@ const SkipCard = ({
         const barHeight = skipActionsEl
           ? skipActionsEl.getBoundingClientRect().height
           : 0;
+
         if (top < 0) {
           window.scrollBy({ top: top - 16, behavior: "smooth" });
         } else if (bottom > vh - barHeight) {
@@ -50,34 +53,47 @@ const SkipCard = ({
         hover:shadow-lg 
         rounded-xl 
         overflow-hidden
-        ${isSelected ? "" : "     "}
-      
       `}
     >
-      <figure className=" aspect-video flex items-center justify-center overflow-hidden">
-        <img
-          src={imageSrc}
-          alt={`${size} Yard Skip`}
-          className="object-cover h-full w-full"
-        />
+      <figure className="aspect-video flex items-center justify-center overflow-hidden">
+        {isLoading ? (
+          <div className="loading-skeleton w-full h-full"></div>
+        ) : (
+          <img
+            src={imageSrc}
+            alt={`${size} Yard Skip`}
+            className="object-cover h-full w-full"
+          />
+        )}
       </figure>
       <div className="card-body p-4">
-        <h2 className="card-title text-text-base ">{size} Yard Skip</h2>
-
-        <p className="text-sm text-neutral-content/75">{hirePeriod} day hire period</p>
-
-        <p className="mt-2 text-xl font-bold text-text-base ">
-          £{priceBeforeVat}
-        </p>
-
+        {isLoading ? (
+          <div className="loading-skeleton h-6 w-1/2 mb-2"></div>
+        ) : (
+          <h2 className="card-title text-text-base">{size} Yard Skip</h2>
+        )}
+        {isLoading ? (
+          <div className="loading-skeleton h-4 w-1/3 "></div>
+        ) : (
+          <p className="text-sm text-neutral-content/75">
+            {hirePeriod} day hire period
+          </p>
+        )}
+        {isLoading ? (
+          <div className="loading-skeleton h-6 w-1/4 mt-3"></div>
+        ) : (
+          <p className="mt-2 text-xl font-bold text-text-base">
+            £{priceBeforeVat}
+          </p>
+        )}
         <div className="card-actions justify-end mt-4">
-          {isSelected ? (
+          {isLoading ? (
+            <div className="loading-skeleton h-10 w-full rounded-xl"></div>
+          ) : isSelected ? (
             <button className="btn btn-warning shadow-none w-full border-none rounded-xl">
               <div className="flex items-center gap-1">
                 <p>Selected</p>
-                <div className="relative">
-                  <BsCheck size={20} />
-                </div>
+                <BsCheck size={20} />
               </div>
             </button>
           ) : (
@@ -86,13 +102,11 @@ const SkipCard = ({
                 e.stopPropagation();
                 handleClick(id);
               }}
-              className="btn bg-base-100 w-full text-shadow-none transition shadow-none border-none rounded-xl"
+              className="btn bg-base-100 w-full shadow-none border-none rounded-xl"
             >
-              <div className="flex justify-center items-center gap-1 ">
+              <div className="flex justify-center items-center gap-1">
                 <p>Select This Skip</p>
-                <div className="relative">
-                  <RiArrowRightSLine size={20} />
-                </div>
+                <RiArrowRightSLine size={20} />
               </div>
             </button>
           )}

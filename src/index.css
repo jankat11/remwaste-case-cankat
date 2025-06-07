@@ -10,6 +10,11 @@
   --font-sans: "Rubik", sans-serif; 
 }
 
+@layer components {
+  .loading-skeleton {
+    @apply skeleton opacity-85;
+  }
+}
 .scroll-container {
   position: relative;
   overflow-x: auto;

@@ -6,9 +6,15 @@ import { imagesBySize } from "../data/skipsImages";
 
 const SkipSelector = () => {
   const [skips, setSkips] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
+
+  const PLACEHOLDER_COUNT = 6;
+  const placeholderArray = Array.from(
+    { length: PLACEHOLDER_COUNT },
+    (_, i) => i
+  );
 
   const API_URL =
     "https://app.wewantwaste.co.uk/api/skips/by-location?postcode=NR32&area=Lowestoft";
@@ -23,7 +29,7 @@ const SkipSelector = () => {
       } catch (err) {
         setError(err.message);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
     fetchSkips();
@@ -37,15 +43,6 @@ const SkipSelector = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center py-10">
-        <span className="text-text-secondary dark:text-text-secondaryDark">
-          Loading...
-        </span>
-      </div>
-    );
-  }
   if (error) {
     return (
       <div className="flex justify-center items-center py-10">
@@ -67,18 +64,23 @@ const SkipSelector = () => {
         </div>
 
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {skips.map((skip) => (
-            <SkipCard
-              key={skip.id}
-              id={skip.id}
-              size={skip.size}
-              priceBeforeVat={skip.price_before_vat}
-              hirePeriod={skip.hire_period_days}
-              isSelected={selectedId === skip.id}
-              imageSrc={imagesBySize[skip.size]}
-              onSelect={handleSelect}
-            />
-          ))}
+          {!isLoading
+            ? skips.map((skip) => (
+                <SkipCard
+                  key={skip.id}
+                  id={skip.id}
+                  isLoading={isLoading}
+                  size={skip.size}
+                  priceBeforeVat={skip.price_before_vat}
+                  hirePeriod={skip.hire_period_days}
+                  isSelected={selectedId === skip.id}
+                  imageSrc={imagesBySize[skip.size]}
+                  onSelect={handleSelect}
+                />
+              ))
+            : placeholderArray.map((skip) => (
+                <SkipCard key={skip.id} id={skip.id} isLoading={isLoading} />
+              ))}
         </div>
       </div>
       <AnimatePresence>
