@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SkipCard from "./SkipCard";
 import SkipFooterActions from "./SkipFooterActions";
+import { AnimatePresence } from "framer-motion";
 
 const SkipSelector = () => {
   const [skips, setSkips] = useState([]);
@@ -78,9 +79,15 @@ const SkipSelector = () => {
           ))}
         </div>
       </div>
-      {selectedId && (
-        <SkipFooterActions skips={skips} selectedId={selectedId} />
-      )}
+      <AnimatePresence>
+        {selectedId && (
+          <SkipFooterActions
+            key="skip-footer"
+            skips={skips}
+            selectedId={selectedId}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 };
