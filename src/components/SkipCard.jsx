@@ -1,5 +1,5 @@
 import { RiArrowRightSLine } from "react-icons/ri";
-import { BsCheck } from "react-icons/bs";
+import { BsCheck, BsExclamationTriangle } from "react-icons/bs";
 import { useRef } from "react";
 
 const SkipCard = ({
@@ -11,11 +11,12 @@ const SkipCard = ({
   imageSrc,
   onSelect,
   isLoading,
+  allowedOnRoad
 }) => {
   const skipCardRef = useRef();
 
   const handleClick = () => {
-    if (isLoading) return;       
+    if (isLoading) return;
     const el = skipCardRef.current;
     if (el && !isSelected) {
       onSelect(id);
@@ -55,7 +56,7 @@ const SkipCard = ({
         overflow-hidden
       `}
     >
-      <figure className="aspect-video flex items-center justify-center overflow-hidden">
+      <figure className="relative aspect-video flex items-center justify-center overflow-hidden">
         {isLoading ? (
           <div className="loading-skeleton w-full h-full"></div>
         ) : (
@@ -65,7 +66,38 @@ const SkipCard = ({
             className="object-cover h-full w-full"
           />
         )}
+        {!isLoading && (
+          <span
+            className={`
+              absolute top-2 right-2
+              bg-warning text-accent-content
+              text-xs font-medium
+              uppercase flex items-center leading-0
+              px-2 py-3
+              rounded-lg
+              select-none pointer-events-none
+            `}
+          >
+            {size} yd
+          </span>
+        )}
+        {!isLoading && !allowedOnRoad && (
+          <span
+            className="
+            absolute bottom-2 left-2
+            bg-error-content/75 text-base-content
+            text-xs font-medium leading-0
+            px-3 py-2 rounded-lg
+            flex items-center gap-2
+            select-none pointer-events-none 
+          "
+          >
+            <BsExclamationTriangle size={13.5} />
+            <span>NOT ALLOWED ON THE ROAD</span>
+          </span>
+        )}
       </figure>
+
       <div className="card-body p-4">
         {isLoading ? (
           <div className="loading-skeleton h-6 w-1/2 mb-2"></div>

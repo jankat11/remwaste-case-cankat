@@ -16,8 +16,7 @@ const SkipSelector = () => {
     (_, i) => i
   );
 
-  const API_URL =
-    "https://app.wewantwaste.co.uk/api/skips/by-location?postcode=NR32&area=Lowestoft";
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchSkips = async () => {
@@ -76,6 +75,7 @@ const SkipSelector = () => {
                   isSelected={selectedId === skip.id}
                   imageSrc={imagesBySize[skip.size]}
                   onSelect={handleSelect}
+                  allowedOnRoad={skip.allowed_on_road}
                 />
               ))
             : placeholderArray.map((skip) => (
