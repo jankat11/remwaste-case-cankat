@@ -2,14 +2,15 @@ import { useRef, useEffect } from "react";
 import {
   FaMapMarkerAlt,
   FaTrashAlt,
-  FaBox,
-  FaCheckCircle,
   FaCalendarAlt,
   FaCreditCard,
+  FaTruck,
 } from "react-icons/fa";
+import { FaShield } from "react-icons/fa6";
 
 const StepBar = ({ steps, currentStep }) => {
   const itemRefs = useRef([]);
+
   useEffect(() => {
     const el = itemRefs.current[currentStep];
     if (el) {
@@ -21,19 +22,23 @@ const StepBar = ({ steps, currentStep }) => {
     }
   }, [currentStep]);
 
-  const icons = [
-    <FaMapMarkerAlt size={15} />,
-    <FaTrashAlt size={15} />,
-    <FaBox size={15} />,
-    <FaCheckCircle size={15} />,
-    <FaCalendarAlt size={15} />,
-    <FaCreditCard size={15} />,
+  const IconComponents = [
+    FaMapMarkerAlt,
+    FaTrashAlt,
+    FaTruck,
+    FaShield,
+    FaCalendarAlt,
+    FaCreditCard,
   ];
 
   return (
-    <ul className="steps scroll-container w-full max-w-7xl mx-auto min-w-2xl px-0 sm:px-4 lg:px-6 my-4">
+    <ul className="steps scroll-container w-full max-w-7xl mx-auto min-w-2xl px-0 sm:px-4 lg:px-6 my-4 sm:mt-6">
       {steps.map((label, index) => {
-        const statusClass = index <= currentStep ? "step step-success" : "step";
+        const isDone = index <= currentStep;
+        const statusClass = isDone
+          ? "step step-success"
+          : "step text-neutral-content/55";
+        const Icon = IconComponents[index];
 
         return (
           <li
@@ -41,7 +46,12 @@ const StepBar = ({ steps, currentStep }) => {
             ref={(el) => (itemRefs.current[index] = el)}
             className={statusClass}
           >
-            <span className="step-icon">{icons[index]}</span>
+            <span className="step-icon">
+              <Icon
+                size={15}
+                className={!isDone && "text-neutral-content/55"}
+              />
+            </span>
             <div className="flex items-center mt-2">
               <p className="text-sm font-medium">{label}</p>
             </div>
