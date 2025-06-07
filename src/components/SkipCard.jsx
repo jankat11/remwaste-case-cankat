@@ -1,5 +1,7 @@
 import { RiArrowRightSLine } from "react-icons/ri";
 import { BsCheck } from "react-icons/bs";
+import { useRef } from "react";
+
 const SkipCard = ({
   id,
   size,
@@ -8,9 +10,36 @@ const SkipCard = ({
   isSelected,
   onSelect,
 }) => {
+  const skipCardRef = useRef();
+
+  const handleClick = () => {
+    const el = skipCardRef.current;
+    if (el && !isSelected) {
+      onSelect(id);
+      setTimeout(() => {
+        const { top, bottom } = el.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const skipActionsEl = document.getElementById("skip-actions");
+        const barHeight = skipActionsEl
+          ? skipActionsEl.getBoundingClientRect().height
+          : 0;
+        if (top < 0) {
+          window.scrollBy({ top: top - 16, behavior: "smooth" });
+        } else if (bottom > vh - barHeight) {
+          const overshoot = bottom - (vh - barHeight);
+          window.scrollBy({ top: overshoot + 16, behavior: "smooth" });
+        }
+      }, 10);
+    } else {
+      onSelect(id);
+    }
+  };
+
   return (
     <div
-      onClick={() => onSelect(id)}
+      id={id}
+      ref={skipCardRef}
+      onClick={handleClick}
       className={`
         card
         bg-base-content/5
@@ -21,6 +50,7 @@ const SkipCard = ({
         rounded-xl 
         overflow-hidden
         ${isSelected ? "" : "     "}
+      
       `}
     >
       <figure className=" aspect-w-16 aspect-h-9 flex items-center justify-center overflow-hidden">
@@ -53,7 +83,7 @@ const SkipCard = ({
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                onSelect(id);
+                handleClick(id);
               }}
               className="btn bg-base-100 w-full text-shadow-none transition shadow-none border-none rounded-xl"
             >
