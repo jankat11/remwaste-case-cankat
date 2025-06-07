@@ -48,7 +48,8 @@ const SkipCard = ({
       className={`
         card bg-base-content/5     
         shadow-sm cursor-pointer      
-        transition hover:shadow-lg 
+        transition hover:shadow-md 
+        hover:shadow-base-content/8
         rounded-xl overflow-hidden border-2   
         ${isSelected ? "border-warning" : "border-transparent"} 
       `}
