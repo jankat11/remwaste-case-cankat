@@ -79,7 +79,7 @@ const SkipSelector = () => {
                 />
               ))
             : placeholderArray.map((skip) => (
-                <SkipCard key={skip.id} id={skip.id} isLoading={isLoading} />
+                <SkipCard key={skip} isLoading={isLoading} />
               ))}
         </div>
       </div>
