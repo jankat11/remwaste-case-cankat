@@ -8,6 +8,7 @@ const SkipCard = ({
   priceBeforeVat,
   hirePeriod,
   isSelected,
+  imageSrc,
   onSelect,
 }) => {
   const skipCardRef = useRef();
@@ -53,9 +54,9 @@ const SkipCard = ({
       
       `}
     >
-      <figure className=" aspect-w-16 aspect-h-9 flex items-center justify-center overflow-hidden">
+      <figure className=" aspect-video flex items-center justify-center overflow-hidden">
         <img
-          src={`5skip.jpg`}
+          src={imageSrc}
           alt={`${size} Yard Skip`}
           className="object-cover h-full w-full"
         />

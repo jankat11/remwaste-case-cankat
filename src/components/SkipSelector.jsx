@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SkipCard from "./SkipCard";
 import SkipFooterActions from "./SkipFooterActions";
 import { AnimatePresence } from "framer-motion";
+import { imagesBySize } from "../data/skipsImages";
 
 const SkipSelector = () => {
   const [skips, setSkips] = useState([]);
@@ -74,6 +75,7 @@ const SkipSelector = () => {
               priceBeforeVat={skip.price_before_vat}
               hirePeriod={skip.hire_period_days}
               isSelected={selectedId === skip.id}
+              imageSrc={imagesBySize[skip.size]}
               onSelect={handleSelect}
             />
           ))}
