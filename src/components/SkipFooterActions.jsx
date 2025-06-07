@@ -49,7 +49,7 @@ export default function SkipFooterActions({
             Back
           </button>
           <button
-            onClick={() => alert("Continue clicked!")}
+            onClick={() => setSelectedId(prev => prev + 1)}
             className="
               button-primary
               w-full sm:w-auto

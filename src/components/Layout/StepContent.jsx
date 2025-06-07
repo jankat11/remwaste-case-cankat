@@ -1,14 +1,14 @@
 import SkipSelector from "../SkipSelector";
+import { useContext } from "react";
+import AppContext from "../../context";
 
-const StepContent = ({currentStep, setCurrentStep}) => {
+const StepContent = () => {
+  const { currentStep } = useContext(AppContext);
   switch (currentStep) {
+    case 1:
+      return <></>;
     case 2:
-      return (
-        <SkipSelector
-          onContinue={() => setCurrentStep(3)}
-          onBack={() => setCurrentStep(1)}
-        />
-      );
+      return <SkipSelector />;
     case 3:
       return <></>;
     case 4:

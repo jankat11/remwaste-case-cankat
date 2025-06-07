@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
+import AppContext from "../context";
 import {
   FaMapMarkerAlt,
   FaTrashAlt,
@@ -7,9 +8,11 @@ import {
   FaTruck,
 } from "react-icons/fa";
 import { FaShield } from "react-icons/fa6";
+import { steps } from "../data/stepsData";
 
-const StepBar = ({ steps, currentStep }) => {
+const StepBar = () => {
   const itemRefs = useRef([]);
+  const {currentStep} = useContext(AppContext)
 
   useEffect(() => {
     const el = itemRefs.current[currentStep];
