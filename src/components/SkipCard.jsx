@@ -63,7 +63,7 @@ const SkipCard = ({
       <div className="card-body p-4">
         <h2 className="card-title text-text-base ">{size} Yard Skip</h2>
 
-        <p className="text-sm">{hirePeriod} day hire</p>
+        <p className="text-sm text-neutral-content/75">{hirePeriod} day hire period</p>
 
         <p className="mt-2 text-xl font-bold text-text-base ">
           £{priceBeforeVat}

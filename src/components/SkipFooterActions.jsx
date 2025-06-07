@@ -23,7 +23,7 @@ const SkipFooterActions = ({ skips, selectedId, setSelectedId }) => {
               Selected: {selectedSkip.size} Yard Skip
             </h2>
             <p className="mt-1 text-text-secondary">
-              {selectedSkip.hire_period_days} days hire period • £
+              {selectedSkip.hire_period_days} day hire period • £
               {selectedSkip.price_before_vat}
             </p>
             <div className="mt-3 flex space-x-3">
