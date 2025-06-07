@@ -39,9 +39,8 @@ export default function SkipFooterActions({
           <button
             onClick={() => setSelectedId(null)}
             className="
+              button-secondary
               w-full sm:w-auto
-              btn bg-base-100
-              rounded-xl shadow-none
               transition
               flex-1
               min-w-[calc(50%_-_4px)]
@@ -52,10 +51,9 @@ export default function SkipFooterActions({
           <button
             onClick={() => alert("Continue clicked!")}
             className="
+              button-primary
               w-full sm:w-auto
-              btn btn-warning rounded-xl shadow-none
               flex items-center justify-center gap-1
-              font-medium
               transition
               flex-1
             "

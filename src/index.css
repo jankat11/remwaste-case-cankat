@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
 @import "tailwindcss";
 @plugin "daisyui" {
@@ -7,21 +6,29 @@
 }
 
 @theme {
-  --font-sans: "Rubik", sans-serif; 
+  --font-sans: "Rubik", sans-serif;
 }
 
 @layer components {
   .loading-skeleton {
     @apply skeleton opacity-85;
   }
+  .button-primary {
+    @apply btn btn-warning shadow-none border-none rounded-xl font-medium;
+  }
+  .button-secondary {
+    @apply btn bg-base-100 rounded-xl shadow-none border-none font-medium tracking-wide hover:bg-base-200/90;
+  }
 }
 .scroll-container {
   position: relative;
   overflow-x: auto;
 }
-.fade-left, .fade-right {
+.fade-left,
+.fade-right {
   position: absolute;
-  top: 0; bottom: 0;
+  top: 0;
+  bottom: 0;
   width: 1.5rem;
   pointer-events: none;
   z-index: 100;
@@ -35,4 +42,3 @@
   right: 0;
   background: linear-gradient(to left, var(--color-base-100), transparent);
 }
-

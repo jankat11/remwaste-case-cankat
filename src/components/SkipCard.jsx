@@ -122,7 +122,7 @@ const SkipCard = ({
           {isLoading ? (
             <div className="loading-skeleton h-10 w-full rounded-xl"></div>
           ) : isSelected ? (
-            <button className="btn btn-warning shadow-none w-full border-none rounded-xl">
+            <button className="button-primary w-full ">
               <div className="flex items-center gap-1">
                 <p>Selected</p>
                 <BsCheck size={20} />
@@ -134,7 +134,7 @@ const SkipCard = ({
                 e.stopPropagation();
                 handleClick(id);
               }}
-              className="btn bg-base-100 w-full shadow-none border-none rounded-xl"
+              className="button-secondary w-full "
             >
               <div className="flex justify-center items-center gap-1">
                 <p>Select This Skip</p>
