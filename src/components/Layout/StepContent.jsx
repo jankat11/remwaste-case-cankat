@@ -5,6 +5,8 @@ import AppContext from "../../context";
 const StepContent = () => {
   const { currentStep } = useContext(AppContext);
   switch (currentStep) {
+    case 0:
+      return <></>;
     case 1:
       return <></>;
     case 2:

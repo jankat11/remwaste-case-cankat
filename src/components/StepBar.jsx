@@ -12,7 +12,7 @@ import { steps } from "../data/stepsData";
 
 const StepBar = () => {
   const itemRefs = useRef([]);
-  const {currentStep} = useContext(AppContext)
+  const { currentStep } = useContext(AppContext);
 
   useEffect(() => {
     const el = itemRefs.current[currentStep];

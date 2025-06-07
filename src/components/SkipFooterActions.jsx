@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa6";
+import AppContext from "../context";
+import { useContext } from "react";
 
 export default function SkipFooterActions({
   skips,
   selectedId,
-  setSelectedId,
 }) {
+  const { currentStep, setCurrentStep } = useContext(AppContext);
   const selectedSkip = skips.find((s) => s.id === selectedId);
 
   return (
@@ -37,7 +39,7 @@ export default function SkipFooterActions({
         </p>
         <div className="order-3 w-full md:w-1/3 flex sm:flex-row gap-2">
           <button
-            onClick={() => setSelectedId(null)}
+            onClick={() => setCurrentStep((prev) => prev - 1)}
             className="
               button-secondary
               w-full sm:w-auto
@@ -49,7 +51,7 @@ export default function SkipFooterActions({
             Back
           </button>
           <button
-            onClick={() => setSelectedId(prev => prev + 1)}
+            onClick={() => setCurrentStep((prev) => prev + 1)}
             className="
               button-primary
               w-full sm:w-auto
