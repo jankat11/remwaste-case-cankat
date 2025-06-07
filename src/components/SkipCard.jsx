@@ -11,7 +11,7 @@ const SkipCard = ({
   imageSrc,
   onSelect,
   isLoading,
-  allowedOnRoad
+  allowedOnRoad,
 }) => {
   const skipCardRef = useRef();
 
@@ -46,14 +46,11 @@ const SkipCard = ({
       ref={skipCardRef}
       onClick={handleClick}
       className={`
-        card
-        bg-base-content/5
-        shadow-sm 
-        cursor-pointer 
-        transition 
-        hover:shadow-lg 
-        rounded-xl 
-        overflow-hidden
+        card bg-base-content/5     
+        shadow-sm cursor-pointer      
+        transition hover:shadow-lg 
+        rounded-xl overflow-hidden border-2   
+        ${isSelected ? "border-warning" : "border-transparent"} 
       `}
     >
       <figure className="relative aspect-video flex items-center justify-center overflow-hidden">
