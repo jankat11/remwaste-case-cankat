@@ -1,12 +1,53 @@
-# React + Vite
+# REMWASTE CASE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+The case study called for a **Select Skip** page, which enables customers to choose a skip size, view the hire period and cost, and proceed to the next booking step. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This interface is built with React, Tailwind CSS, and DaisyUI, featuring a flat design aesthetic, responsive grid layout, skeleton loading animations, and persistent state via `localStorage`. The Context API manages the progress bar steps, and custom-sized assets ensure optimal performance and visual consistency. You can explore the live demo [here](https://remwaste-case-cankat.netlify.app/). 
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Usage
+
+Ensure that you're in the root directory where `package.json` is located. After installing the necessary libraries using `npm install`, you can start the development server with `npm run dev`.
+
+## Design & Implementation Details
+
+### UI/UX
+
+- **Flat design approach**: Opted for a minimalist, functional interface without unnecessary embellishments.
+
+- **Primary color selection**: Chose a yellow tone to complement the container images and create visual harmony.
+
+- **Tailwind & DaisyUI integration**: Configured Tailwind utility classes and DaisyUI to align with the concept’s bespoke color palette.
+
+- **Typography**: Used the Rubik font to evoke an industrial, modern feel.
+
+- **State persistence**: Implemented `localStorage` for the selected skip so that it remains chosen after a page refresh.
+
+- **Auto-scroll on load**: For improved UX, the view automatically scrolls to the currently selected skip when the component mounts.
+
+- **Scroll on selection**: Ensured each new selection triggers a scroll to focus the card into view for clear visibility.
+
+- **Responsive grid layout**: Built a fluid, responsive grid that adapts column counts and spacing based on viewport width.
+
+- **Modern spacing & hierarchy**: Followed contemporary standards for padding, margins, and visual hierarchy to guide the user’s attention.
+
+- **Skeleton loading animation**: Used a skeleton animation for loading states to preserve the layout.
+
+### Initial Data
+
+The initial data provided in the case was parsed and used. Since the related JSON didn’t include any images, they were added separately to the assets folder and parsed via a dedicated object. Additionally, because the original image files were very large, they were resized to appropriate dimensions and underwent some refinements.
+
+### State Management
+
+The Context API was used to manage the state of the steps in the progress bar.
+
+
+## Improvements I Could Have Made If I Had More Time:
+
+- To work more thoroughly on the **skeleton** and make its colors and animations fully consistent with the theme.
+- Working on overall better **UI/UX**.
+- **Selenium tests**
+- **Unit tests**
+- Splitting some JavaScript files with dense code blocks into **smaller components**.
