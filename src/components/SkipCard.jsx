@@ -41,7 +41,7 @@ const SkipCard = ({
         ${isSelected ? "border-warning" : "border-transparent"} 
       `}
     >
-      <figure className="relative aspect-video flex items-center justify-center overflow-hidden">
+      <figure className="relative aspect-video flex items-center justify-center overflow-hidden rounded-none">
         {isLoading ? (
           <div className="loading-skeleton w-full h-full"></div>
         ) : (
