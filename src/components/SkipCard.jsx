@@ -1,7 +1,7 @@
 import { RiArrowRightSLine } from "react-icons/ri";
 import { BsCheck, BsExclamationTriangle } from "react-icons/bs";
-import { useRef } from "react";
-
+import { useRef, useEffect } from "react";
+import { scrollToSkip } from "../utils/scrollUtils";
 const SkipCard = ({
   id,
   size,
@@ -17,28 +17,15 @@ const SkipCard = ({
 
   const handleClick = () => {
     if (isLoading) return;
-    const el = skipCardRef.current;
-    if (el && !isSelected) {
-      onSelect(id);
-      setTimeout(() => {
-        const { top, bottom } = el.getBoundingClientRect();
-        const vh = window.innerHeight || document.documentElement.clientHeight;
-        const skipActionsEl = document.getElementById("skip-actions");
-        const barHeight = skipActionsEl
-          ? skipActionsEl.getBoundingClientRect().height
-          : 0;
-
-        if (top < 0) {
-          window.scrollBy({ top: top - 16, behavior: "smooth" });
-        } else if (bottom > vh - barHeight) {
-          const overshoot = bottom - (vh - barHeight);
-          window.scrollBy({ top: overshoot + 16, behavior: "smooth" });
-        }
-      }, 10);
-    } else {
-      onSelect(id);
-    }
+    onSelect(id);
   };
+
+  useEffect(() => {
+    const el = skipCardRef.current;
+    if (el && isSelected) {
+      scrollToSkip(el)
+    } 
+  }, [isSelected])
 
   return (
     <div

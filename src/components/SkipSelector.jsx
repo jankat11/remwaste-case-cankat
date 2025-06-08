@@ -34,11 +34,26 @@ const SkipSelector = () => {
     fetchSkips();
   }, []);
 
+  useEffect(() => {
+    if (!isLoading && skips.length > 0) {
+      const stored = localStorage.getItem("selectedSkipId");
+      if (stored) {
+        const id = Number(stored);
+        if (skips.some((s) => s.id === id)) {
+          setSelectedId(id);
+        }
+      }
+    }
+  }, [isLoading, skips]);
+
+
   const handleSelect = (id) => {
     if (selectedId !== id) {
       setSelectedId(id);
+      localStorage.setItem("selectedSkipId", id);
     } else {
       setSelectedId(null);
+      localStorage.removeItem("selectedSkipId");
     }
   };
 
@@ -52,7 +67,7 @@ const SkipSelector = () => {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:pb-40 pb-56">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-text-base dark:text-text-dark">
             Choose Your Skip Size

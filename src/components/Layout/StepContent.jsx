@@ -13,7 +13,7 @@ const StepContent = () => {
       </p>
       <button
         onClick={() => setCurrentStep(CASE_STEP)}
-        className="mt-4 button-primary"
+        className="mt-6 button-primary"
       >
         Return to Skip Selection
       </button>
