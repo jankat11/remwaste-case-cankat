@@ -48,6 +48,8 @@ The Context API was used to manage the state of the steps in the progress bar.
 
 - To work more thoroughly on the **skeleton** and make its colors and animations fully consistent with the theme.
 - Working on overall better **UI/UX**.
+- Better image optimization and fast loading with caching mechanisms.
+- Using the new React 19 features.
 - **Selenium tests**
 - **Unit tests**
 - Splitting some JavaScript files with dense code blocks into **smaller components**.
