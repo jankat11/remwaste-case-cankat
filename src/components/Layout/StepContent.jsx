@@ -1,25 +1,30 @@
 import SkipSelector from "../SkipSelector";
 import { useContext } from "react";
 import AppContext from "../../context";
+import { CASE_STEP } from "../../data/stepsData";
 
 const StepContent = () => {
-  const { currentStep } = useContext(AppContext);
-  switch (currentStep) {
-    case 0:
-      return <></>;
-    case 1:
-      return <></>;
-    case 2:
-      return <SkipSelector />;
-    case 3:
-      return <></>;
-    case 4:
-      return <></>;
-    case 5:
-      return <></>;
-    default:
-      return <></>;
-  }
+  const { currentStep, setCurrentStep } = useContext(AppContext);
+
+  const OutsideCaseNotice = () => (
+    <div className="flex flex-col items-center justify-center p-8  rounded-md">
+      <p className="text-center text-lg font-medium ">
+        This section is outside the scope of the case study requirements.
+      </p>
+      <button
+        onClick={() => setCurrentStep(CASE_STEP)}
+        className="mt-4 button-primary"
+      >
+        Return to Skip Selection
+      </button>
+    </div>
+  );
+
+  return currentStep === CASE_STEP ? (
+    <SkipSelector />
+  ) : (
+    <OutsideCaseNotice />
+  );
 };
 
 export default StepContent;

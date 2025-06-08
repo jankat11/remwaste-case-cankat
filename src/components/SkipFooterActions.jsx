@@ -7,7 +7,7 @@ export default function SkipFooterActions({
   skips,
   selectedId,
 }) {
-  const { currentStep, setCurrentStep } = useContext(AppContext);
+  const { setCurrentStep } = useContext(AppContext);
   const selectedSkip = skips.find((s) => s.id === selectedId);
 
   return (
