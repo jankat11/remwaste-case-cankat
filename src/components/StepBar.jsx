@@ -1,4 +1,4 @@
-import { useRef, useEffect, useContext } from "react";
+import { useRef, useEffect, use } from "react";
 import AppContext from "../context";
 import {
   FaMapMarkerAlt,
@@ -12,7 +12,7 @@ import { steps } from "../data/stepsData";
 
 const StepBar = () => {
   const itemRefs = useRef([]);
-  const { currentStep } = useContext(AppContext);
+  const { currentStep } = use(AppContext);
 
   useEffect(() => {
     const el = itemRefs.current[currentStep];

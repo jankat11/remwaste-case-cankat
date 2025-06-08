@@ -41,7 +41,7 @@ The initial data provided in the case was parsed and used. Since the related JSO
 
 ### State Management
 
-The Context API was used to manage the state of the steps in the progress bar.
+The Context API was used to manage the state of the steps in the progress bar. The **use() hook**, stabilized in React 19’s latest release, is now used instead of useContext.
 
 
 ## Improvements I Could Have Made If I Had More Time:

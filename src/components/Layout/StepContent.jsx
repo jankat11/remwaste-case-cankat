@@ -1,10 +1,10 @@
 import SkipSelector from "../SkipSelector";
-import { useContext } from "react";
+import { use } from "react";
 import AppContext from "../../context";
 import { CASE_STEP } from "../../data/stepsData";
 
 const StepContent = () => {
-  const { currentStep, setCurrentStep } = useContext(AppContext);
+  const { currentStep, setCurrentStep } = use(AppContext);
 
   const OutsideCaseNotice = () => (
     <div className="flex flex-col items-center justify-center p-8  rounded-md">

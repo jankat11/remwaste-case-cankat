@@ -7,15 +7,20 @@ export const AppContextProvider = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(CASE_STEP);
 
   return (
-    <AppContext.Provider
+    <AppContext
       value={{
         currentStep,
         setCurrentStep,
       }}
     >
       {children}
-    </AppContext.Provider>
+    </AppContext>
   );
 };
 
 export default AppContext;
+
+/* 
+  NOTE:
+  by react 19 no need AppContext.Provider anymore. AppContext is enough
+*/

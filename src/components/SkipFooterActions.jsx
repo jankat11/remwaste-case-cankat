@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa6";
 import AppContext from "../context";
-import { useContext } from "react";
+import { use } from "react";
 
 export default function SkipFooterActions({
   skips,
   selectedId,
 }) {
-  const { setCurrentStep } = useContext(AppContext);
+  const { setCurrentStep } = use(AppContext);
   const selectedSkip = skips.find((s) => s.id === selectedId);
 
   return (
