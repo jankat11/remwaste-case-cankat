@@ -16,7 +16,17 @@ const SkipSelector = () => {
     (_, i) => i
   );
 
-  const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL =
+    import.meta.env.VITE_API_URL ??
+    "https://app.wewantwaste.co.uk/api/skips/by-location?postcode=NR32&area=Lowestoft";
+
+    /* 
+    chore: add fallback URL so repo runs without .env
+    ------------------------------------------------------
+    In a real project this URL would stay in .env, but for this case study
+    I’ve included the public endpoint directly so reviewers can clone & run
+    without extra setup. No functional logic changed. 
+    */
 
   useEffect(() => {
     const fetchSkips = async () => {
@@ -45,7 +55,6 @@ const SkipSelector = () => {
       }
     }
   }, [isLoading, skips]);
-
 
   const handleSelect = (id) => {
     if (selectedId !== id) {
